@@ -1,25 +1,25 @@
 import { Schema, model, Document } from 'mongoose';
 
 interface IUser extends Document {
-  email?: String;
-  firstName: String;
-  lastName: String;
-  fullName(): String;
+  email?: string;
+  firstName: string;
+  lastName: string;
+  fullName(): string;
 }
 
 const UserSchema = new Schema(
   {
     email: String,
     firstName: String,
-    lastName: String,
+    lastName: String
   },
   {
-    timestamps: true,
+    timestamps: true
   }
 );
 
-UserSchema.methods.fullName = function (): String {
-  return this.firstName + ' ' + this.lastName;
+UserSchema.methods.fullName = function getFullName(): string {
+  return `${this.firstName} ${this.lastName}`;
 };
 
 export default model<IUser>('User', UserSchema);

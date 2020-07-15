@@ -1,22 +1,25 @@
-import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
 import mongoose from 'mongoose';
-
 import routes from './routes';
 
-const MONGO_DB_URL =
-  'mongodb+srv://gustavo-rw:0Et9ab0y2WlC438l@cluster0-lqxgu.mongodb.net/users';
+dotenv.config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+});
+
+const MONGO_DB_URL = `mongodb+srv://${process.env.ENV_USER}:0Et9ab0y2WlC438l@cluster0-lqxgu.mongodb.net/${process.env.ENV_DB}`;
 class App {
   public express: express.Application;
 
   public constructor() {
     this.express = express();
-    this.middlewares();
+    this.middleWares();
     this.database();
     this.routes();
   }
 
-  private middlewares(): void {
+  private middleWares(): void {
     this.express.use(express.json());
     this.express.use(cors());
   }
@@ -24,7 +27,7 @@ class App {
   private database(): void {
     mongoose.connect(MONGO_DB_URL, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
+      useUnifiedTopology: true
     });
   }
 
