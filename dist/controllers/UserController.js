@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const User_1 = __importDefault(require("../Schemas/User"));
+const User_1 = __importDefault(require("../schemas/User"));
 class UserController {
     index(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
