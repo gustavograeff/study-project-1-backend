@@ -6,5 +6,5 @@
   "printWidth": 120,
   "bracketSpacing": true,
   "jsxBracketSameLine": false,
-  "trailingComma": "es5"
+  "trailingComma": "none"
 }
