@@ -17,6 +17,10 @@
     "import/no-unresolved": "off",
     "class-methods-use-this": "off",
     "max-len": "off",
-    "comma-dangle": "off"
+    "comma-dangle": "off",
+    "no-underscore-dangle": "off",
+    "implicit-arrow-linebreak": "off",
+    "arrow-body-style": "off",
+    "consistent-return": "off"
   }
 }

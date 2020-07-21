@@ -1,9 +1,10 @@
 import { Schema, model, Document } from 'mongoose';
 
 interface IUser extends Document {
-  email?: string;
   firstName: string;
   lastName: string;
+  email: string;
+  password: string;
   fullName(): string;
 }
 
