@@ -1,7 +1,10 @@
 import { Request, Response } from 'express';
-import { validationResult, ValidationError, Result } from 'express-validator';
+import { validationResult, ValidationError } from 'express-validator';
 
 import User from '@schemas/User';
+
+const ERROR_ON_SAVE_DATA = 400;
+const ERROR_ON_VALIDATE_DATA = 422;
 
 interface IError {
   error: string;
@@ -19,15 +22,19 @@ class UserController {
     const errors = validationResult(req);
 
     if (errors.isEmpty()) {
-      const newUser = await User.create(req.body);
-      return res.json(newUser);
+      try {
+        const newUser = await User.create(req.body);
+        return res.json(newUser);
+      } catch (err) {
+        return res.status(ERROR_ON_SAVE_DATA).json(err);
+      }
     }
 
     const error: IError = {
       error: 'Validation error',
       data: errors.array()
     };
-    return res.status(422).json(error);
+    return res.status(ERROR_ON_VALIDATE_DATA).json(error);
   }
 
   public async deleteAll(req: Request, res: Response) {
