@@ -4,7 +4,11 @@
     "node": true,
     "jest": true
   },
-  "extends": ["prettier", "airbnb-base", "plugin:@typescript-eslint/recommended"],
+  "extends": [
+    "prettier",
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 11,
@@ -21,6 +25,7 @@
     "no-underscore-dangle": "off",
     "implicit-arrow-linebreak": "off",
     "arrow-body-style": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "newline-per-chained-call": "off"
   }
 }
