@@ -14,7 +14,7 @@ yarn dev (default port 8080)
 yarn test
 ```
 
-### Or to test watching them:
+### Or to test watching:
 
 ```
 yarn test-watch
