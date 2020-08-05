@@ -23,10 +23,14 @@ routes.post(
         }
 
         return user;
-      })
+      }),
+    body('password').trim().isLength({ min: 5 }),
+    body('firstName').trim().isLength({ min: 3 }).not().isEmpty(),
+    body('lastName').trim().isLength({ min: 3 }).not().isEmpty()
   ],
-  UserController.createUser
+  UserController.createUser.bind(UserController)
 );
 routes.delete('/delete', UserController.deleteAll);
+routes.post('/login');
 
 export default routes;

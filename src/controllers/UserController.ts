@@ -38,7 +38,7 @@ class UserController {
     }
   }
 
-  public async deleteAll(req: Request, res: Response) {
+  public async deleteAll(req: Request, res: Response): Promise<Response> {
     const user = await User.findOneAndRemove();
 
     return res.json(user);
