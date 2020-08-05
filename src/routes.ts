@@ -1,7 +1,7 @@
+import AuthController from '@controllers/AuthController';
+import User from '@schemas/User';
 import { Router } from 'express';
 import { body } from 'express-validator';
-
-import User from '@schemas/User';
 import UserController from './controllers/UserController';
 
 const routes = Router();
@@ -24,13 +24,13 @@ routes.post(
 
         return user;
       }),
-    body('password').trim().isLength({ min: 5 }),
-    body('firstName').trim().isLength({ min: 3 }).not().isEmpty(),
-    body('lastName').trim().isLength({ min: 3 }).not().isEmpty()
+    body('password').trim().isLength({ min: 5 }).withMessage('Password min length is 5!'),
+    body('firstName').trim().isLength({ min: 3 }).withMessage('First name min length is 3!').not().isEmpty(),
+    body('lastName').trim().isLength({ min: 3 }).withMessage('Least name min length is 3!').not().isEmpty()
   ],
   UserController.createUser.bind(UserController)
 );
 routes.delete('/delete', UserController.deleteAll);
-routes.post('/login');
+routes.post('/login', AuthController.login.bind(AuthController));
 
 export default routes;

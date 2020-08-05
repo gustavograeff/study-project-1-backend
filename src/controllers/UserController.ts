@@ -19,7 +19,7 @@ class UserController {
       const error: IError = {
         name: 'Validation error!',
         message: 'Error on call request!',
-        requestDefaultValidationError: errors.array()
+        expressValidatorErrors: errors.array()
       };
       return res.status(ErrorCodes.ERROR_ON_VALIDATE_DATA).json(error);
     }

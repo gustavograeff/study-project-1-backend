@@ -1,5 +1,6 @@
 import { ValidationError } from 'express-validator';
 
 export interface IError extends Error {
-  requestDefaultValidationError?: Array<ValidationError>;
+  expressValidatorErrors?: Array<ValidationError>;
+  requestError?: string;
 }
