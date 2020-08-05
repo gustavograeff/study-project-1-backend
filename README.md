@@ -1,18 +1,21 @@
 ## Project created to improve node skills:
 
-```
-Run steps:
+### Run steps:
 
+```
 yarn install
 
 yarn dev (default port 8080)
+```
 
-To run tests use:
+### To test use:
 
+```
 yarn test
+```
 
-Or to watch them:
+### Or to test watching them:
 
+```
 yarn test-watch
-
 ```
