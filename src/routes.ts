@@ -30,7 +30,6 @@ routes.post(
   ],
   UserController.createUser.bind(UserController)
 );
-routes.delete('/delete', UserController.deleteAll);
 routes.post('/login', AuthController.login.bind(AuthController));
 
 export default routes;
