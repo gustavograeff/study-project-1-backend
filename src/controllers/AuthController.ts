@@ -37,8 +37,8 @@ class AuthController {
         message: 'An ocurred when accessing database!'
       };
 
-      if (!email || !password) {
-        error.requestError = 'Missing email or password on request body!';
+      if (!password) {
+        error.requestError = 'Missing password on request body!';
         return res.status(ErrorsCode.ERROR_ON_VALIDATE_DATA).json(error);
       }
 
