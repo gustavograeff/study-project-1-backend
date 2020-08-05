@@ -10,14 +10,16 @@ class AuthController {
 
       if (!user) {
         const error: IError = {
-          error: 'An user with this email could not be found!'
+          name: 'User not found!',
+          message: 'An user with this email could not be found!'
         };
         res.status(ErrorsCode.ERROR_NOT_FOUND).json(error);
       }
     } catch (err) {
       const error: IError = {
-        error: 'An user with this email could not be found!',
-        requestDefaultValidation: err
+        name: 'Database error!',
+        message: 'An ocurred when accessing database!',
+        requestDefaultValidationError: err
       };
       res.status(ErrorsCode.ERROR_NOT_FOUND).json(error);
     }

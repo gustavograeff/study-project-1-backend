@@ -1,15 +1,9 @@
 import User from '@schemas/User';
-import { Request, Response, NextFunction } from 'express';
-import { ValidationError, validationResult } from 'express-validator';
 import bcryptjs from 'bcryptjs';
-
-const ERROR_ON_SAVE_DATA = 400;
-const ERROR_ON_VALIDATE_DATA = 422;
-
-interface IError {
-  error: string;
-  data: Array<ValidationError>;
-}
+import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
+import { IError } from '../shared/interfaces/Errors';
+import ErrorCodes from '../shared/models/ErrorsCode';
 
 class UserController {
   public async index(req: Request, res: Response): Promise<Response> {
@@ -23,23 +17,24 @@ class UserController {
 
     if (!errors.isEmpty()) {
       const error: IError = {
-        error: 'Validation error',
-        data: errors.array()
+        name: 'Validation error!',
+        message: 'Error on call request!',
+        requestDefaultValidationError: errors.array()
       };
-      return res.status(ERROR_ON_VALIDATE_DATA).json(error);
+      return res.status(ErrorCodes.ERROR_ON_VALIDATE_DATA).json(error);
     }
 
     try {
       req.body.password = await this.encryptUserPassword(req);
     } catch (err) {
-      return res.status(ERROR_ON_SAVE_DATA).json(err);
+      return res.status(ErrorCodes.ERROR_ON_SAVE_DATA).json(err);
     }
 
     try {
       const newUser = await User.create(req.body);
       return res.json(newUser);
     } catch (err) {
-      return res.status(ERROR_ON_SAVE_DATA).json(err);
+      return res.status(ErrorCodes.ERROR_ON_SAVE_DATA).json(err);
     }
   }
 

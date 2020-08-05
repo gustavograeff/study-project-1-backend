@@ -13,7 +13,7 @@ routes.post(
     body('email')
       .isEmail()
       .withMessage('Please enter a valid e-mail!')
-      .custom(async (value, { req }) => {
+      .custom(async (value) => {
         const user = await User.findOne({ email: value });
 
         if (user) {
