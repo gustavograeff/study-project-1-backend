@@ -1,8 +1,9 @@
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 import User from '../schemas/User';
 import { IError } from '../shared/interfaces/Errors';
-import { IUserLogin } from '../shared/interfaces/User';
+import { IUserLogin, IUserLoginResponse } from '../shared/interfaces/User';
 import ErrorsCode from '../shared/models/ErrorsCode';
 
 class AuthController {
@@ -30,7 +31,22 @@ class AuthController {
         return res.status(ErrorsCode.ERROR_ON_VALIDATE_DATA).json(error);
       }
 
-      return res.status(200).json(user);
+      const token = jwt.sign(
+        {
+          email,
+          userId: user._id.toString()
+        },
+        'somesupersecretsecret',
+        { expiresIn: '1h' }
+      );
+
+      const userLoginResponse: IUserLoginResponse = {
+        email: user.email,
+        token,
+        userId: user._id.toString()
+      };
+
+      return res.status(200).json(userLoginResponse);
     } catch (err) {
       const error: IError = {
         name: 'Database error!',
