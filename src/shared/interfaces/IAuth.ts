@@ -1,11 +1,11 @@
 import { Request } from 'express';
 
 export interface IAuthReq extends Request {
-  auth: IAuth;
+  userId?: string;
 }
 
 export interface IAuth {
-  email: string;
+  email?: string;
   userId: string;
   iat?: number;
   exp?: number;
