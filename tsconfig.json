@@ -19,7 +19,8 @@
       "@controllers/*": ["./src/controllers/*"],
       "@schemas/*": ["./src/schemas/*"],
       "@models/*": ["./src/shared/models/*"],
-      "@interfaces/*": ["./src/shared/interfaces/*"]
+      "@interfaces/*": ["./src/shared/interfaces/*"],
+      "@middleware/*": ["./src/middleware/*"]
     }
   },
   "include": ["src/**/*"]

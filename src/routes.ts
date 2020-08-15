@@ -3,6 +3,8 @@ import User from '@schemas/User';
 import { Router } from 'express';
 import { body } from 'express-validator';
 import UserController from '@controllers/UserController';
+import FeedController from '@controllers/FeedController';
+import AuthMiddleware from '@middleware/AuthMiddleware';
 
 const routes = Router();
 
@@ -31,5 +33,6 @@ routes.post(
   UserController.createUser.bind(UserController)
 );
 routes.post('/login', AuthController.login.bind(AuthController));
+routes.post('/create-post', AuthMiddleware.isAuth, FeedController.createPost);
 
 export default routes;
