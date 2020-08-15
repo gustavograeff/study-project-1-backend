@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import User from '../schemas/User';
-import { IError } from '../shared/interfaces/Errors';
-import { IUserLogin, IUserLoginResponse } from '../shared/interfaces/User';
-import ErrorsCode from '../shared/models/ErrorsCode';
+import { IUserLogin, IUserLoginResponse } from '@interfaces/IUser';
+import { IError } from '@interfaces/IErrors';
+import ErrorsCode from '@models/ErrorsCode';
+import User from '@schemas/User';
 
 class AuthController {
   public async login(req: Request, res: Response) {

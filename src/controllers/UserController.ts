@@ -2,8 +2,8 @@ import User from '@schemas/User';
 import bcryptjs from 'bcryptjs';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
-import { IError } from '../shared/interfaces/Errors';
-import ErrorCodes from '../shared/models/ErrorsCode';
+import { IError } from '@interfaces/IErrors';
+import ErrorCodes from '@models/ErrorsCode';
 
 class UserController {
   public async index(req: Request, res: Response): Promise<Response> {
