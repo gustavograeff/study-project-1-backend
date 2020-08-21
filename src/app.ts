@@ -2,6 +2,10 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import path from 'path';
+import fs from 'fs';
 import routes from './routes';
 
 dotenv.config({
@@ -20,6 +24,9 @@ class App {
   }
 
   private middleWares(): void {
+    const accessLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' });
+    this.express.use(morgan('combined', { stream: accessLogStream }));
+    this.express.use(helmet());
     this.express.use(express.json());
     this.express.use(cors());
   }
