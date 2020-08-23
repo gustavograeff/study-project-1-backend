@@ -13,5 +13,4 @@ const PORT = process.env.PORT || 8080;
 // const privateKey = fs.readFileSync('server.key');
 // const certificate = fs.readFileSync('server.cert');
 // https.createServer({ key: privateKey, cert: certificate }, app).listen(PORT);
-console.log('THIS IS HEROKU PORT => ', PORT);
-app.listen(PORT);
+app.listen(PORT, () => console.log('RUNNING IN PORT => ', PORT));
